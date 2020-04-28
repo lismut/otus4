@@ -1,8 +1,5 @@
 var searchData=
 [
-  ['is_5ftuple',['is_tuple',['../structis__tuple.html',1,'']]],
-  ['is_5ftuple_3c_20const_20std_3a_3atuple_3c_20ts_2e_2e_2e_20_3e_20_3e',['is_tuple&lt; const std::tuple&lt; Ts... &gt; &gt;',['../structis__tuple_3_01const_01std_1_1tuple_3_01Ts_8_8_8_01_4_01_4.html',1,'']]],
-  ['is_5ftuple_3c_20const_20volatile_20std_3a_3atuple_3c_20ts_2e_2e_2e_20_3e_20_3e',['is_tuple&lt; const volatile std::tuple&lt; Ts... &gt; &gt;',['../structis__tuple_3_01const_01volatile_01std_1_1tuple_3_01Ts_8_8_8_01_4_01_4.html',1,'']]],
-  ['is_5ftuple_3c_20std_3a_3atuple_3c_20ts_2e_2e_2e_20_3e_20_3e',['is_tuple&lt; std::tuple&lt; Ts... &gt; &gt;',['../structis__tuple_3_01std_1_1tuple_3_01Ts_8_8_8_01_4_01_4.html',1,'']]],
-  ['is_5ftuple_3c_20volatile_20std_3a_3atuple_3c_20ts_2e_2e_2e_20_3e_20_3e',['is_tuple&lt; volatile std::tuple&lt; Ts... &gt; &gt;',['../structis__tuple_3_01volatile_01std_1_1tuple_3_01Ts_8_8_8_01_4_01_4.html',1,'']]]
+  ['boost_5fauto_5ftest_5fcase',['BOOST_AUTO_TEST_CASE',['../testboost_8cpp.html#a5a8f1e117b104260d857ed534915b417',1,'testboost.cpp']]],
+  ['boost_5ftest_5fmodule',['BOOST_TEST_MODULE',['../testboost_8cpp.html#a6b2a3852db8bb19ab6909bac01859985',1,'testboost.cpp']]]
 ];
