@@ -17,35 +17,35 @@ add_subdirectory(
 )
 
 add_executable(doxy main.cpp)
-add_library(doxy.lib lib.cpp)
-add_executable(test_version testboost.cpp)
-add_executable(test_version_g testg.cpp)
+add_library(doxy.lib STATIC lib.cpp)
+add_executable(test_boost testboost.cpp)
+add_executable(test_google testg.cpp)
 
-set_target_properties(doxy  doxy.lib test_version test_version_g PROPERTIES
+set_target_properties(doxy  doxy.lib test_boost test_google PROPERTIES
     CXX_STANDARD 17
     CXX_STANDARD_REQUIRED ON
 )
 
 target_include_directories(doxy.lib
-    PRIVATE "${CMAKE_BINARY_DIR}"
+    PUBLIC "${CMAKE_BINARY_DIR}"
 )
-set_target_properties(test_version PROPERTIES
+set_target_properties(test_boost PROPERTIES
     COMPILE_DEFINITIONS BOOST_TEST_DYN_LINK
     INCLUDE_DIRECTORIES ${Boost_INCLUDE_DIR}
 )
 
-target_link_libraries(doxy PRIVATE
+target_link_libraries(doxy
     doxy.lib
 )
-target_link_libraries(test_version
+
+target_link_libraries(test_boost
     ${Boost_LIBRARIES}
-    iptask.lib
+    doxy.lib
 )
 
-target_link_libraries(test_version_g
-    googletest 
+target_link_libraries(test_google
+    gtest
     ${CMAKE_THREAD_LIBS_INIT}
-    doxy.lib googletest_main
 )
 
 if (MSVC)
@@ -55,10 +55,10 @@ if (MSVC)
     target_compile_options(doxy.lib PRIVATE
         /W4
     )
-    target_compile_options(test_version PRIVATE
+    target_compile_options(test_boost PRIVATE
         /W4
     )
-    target_compile_options(test_version_g PRIVATE
+    target_compile_options(test_google PRIVATE
         /W4
     )
 else ()
@@ -68,10 +68,10 @@ else ()
     target_compile_options(doxy.lib PRIVATE
         -Wall -Wextra -pedantic -Werror
     )
-    target_compile_options(test_version PRIVATE
+    target_compile_options(test_boost PRIVATE
         -Wall -Wextra -pedantic -Werror
     )
-    target_compile_options(test_version_g PRIVATE
+    target_compile_options(test_google PRIVATE
         -Wall -Wextra -pedantic -Werror
     )
     target_compile_options(doxy PRIVATE
@@ -92,5 +92,11 @@ set(CPACK_PACKAGE_CONTACT lismut@gmail.com)
 include(CPack)
 enable_testing()
 
-add_test(test_version test_version)
-add_test(test_version_g test_version_g)
+add_test(test_boost test_boost)
+add_test(GOOGLE_TEST2 doxy)
+add_test(GOOGLE_TEST3 doxy)
+add_test(GOOGLE_TEST4 doxy)
+add_test(GOOGLE_TEST5 doxy)
+add_test(GOOGLE_TEST6 doxy)
+add_test(GOOGLE_TEST7 doxy)
+add_test(GOOGLE_TEST8 doxy)
