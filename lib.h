@@ -37,12 +37,11 @@ decltype(begin(std::declval<T>()), end(std::declval<T>()), std::string()) print_
 }
 
 /// \brief Type traits for tuple
-/// \details Returns true for tuples
+/// \details Returns false for not tuples
 template<typename T> struct is_tuple : std::false_type {};
+/// \brief Type traits for tuple
+/// \details Returns true for tuples
 template<typename... Ts> struct is_tuple<std::tuple<Ts...>> : std::true_type {};
-template<typename... Ts> struct is_tuple<const std::tuple<Ts...>> : std::true_type {};
-template<typename... Ts> struct is_tuple<const volatile std::tuple<Ts...>> : std::true_type {};
-template<typename... Ts> struct is_tuple<volatile std::tuple<Ts...>> : std::true_type {};
 
 /// \brief Template function for print view of ip.
 /// \details Tuple specialization.

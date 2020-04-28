@@ -1,9 +1,9 @@
 cmake_minimum_required(VERSION 3.2)
 
 if($ENV{TRAVIS_BUILD_NUMBER}) 
-    project(doxy VERSION 0.0.$ENV{TRAVIS_BUILD_NUMBER})
+    project(print_ip VERSION 0.0.$ENV{TRAVIS_BUILD_NUMBER})
 else()
-    project(doxy VERSION 0.0.3)
+    project(print_ip VERSION 0.0.3)
 endif()
 
 find_package(Boost COMPONENTS unit_test_framework REQUIRED)
@@ -16,17 +16,17 @@ add_subdirectory(
        googletest
 )
 
-add_executable(doxy main.cpp)
-add_library(doxy.lib STATIC lib.cpp)
+add_executable(print_ip main.cpp)
+add_library(print_ip.lib STATIC lib.cpp)
 add_executable(test_boost testboost.cpp)
 add_executable(test_google testg.cpp)
 
-set_target_properties(doxy  doxy.lib test_boost test_google PROPERTIES
+set_target_properties(print_ip  print_ip.lib test_boost test_google PROPERTIES
     CXX_STANDARD 17
     CXX_STANDARD_REQUIRED ON
 )
 
-target_include_directories(doxy.lib
+target_include_directories(print_ip.lib
     PUBLIC "${CMAKE_BINARY_DIR}"
 )
 set_target_properties(test_boost PROPERTIES
@@ -34,13 +34,13 @@ set_target_properties(test_boost PROPERTIES
     INCLUDE_DIRECTORIES ${Boost_INCLUDE_DIR}
 )
 
-target_link_libraries(doxy
-    doxy.lib
+target_link_libraries(print_ip
+    print_ip.lib
 )
 
 target_link_libraries(test_boost
     ${Boost_LIBRARIES}
-    doxy.lib
+    print_ip.lib
 )
 
 target_link_libraries(test_google
@@ -49,10 +49,10 @@ target_link_libraries(test_google
 )
 
 if (MSVC)
-    target_compile_options(doxy PRIVATE
+    target_compile_options(print_ip PRIVATE
         /W4
     )
-    target_compile_options(doxy.lib PRIVATE
+    target_compile_options(print_ip.lib PRIVATE
         /W4
     )
     target_compile_options(test_boost PRIVATE
@@ -62,10 +62,10 @@ if (MSVC)
         /W4
     )
 else ()
-    target_compile_options(doxy PRIVATE
+    target_compile_options(print_ip PRIVATE
         -Wall -Wextra -pedantic -Werror
     )
-    target_compile_options(doxy.lib PRIVATE
+    target_compile_options(print_ip.lib PRIVATE
         -Wall -Wextra -pedantic -Werror
     )
     target_compile_options(test_boost PRIVATE
@@ -74,12 +74,12 @@ else ()
     target_compile_options(test_google PRIVATE
         -Wall -Wextra -pedantic -Werror
     )
-    target_compile_options(doxy PRIVATE
+    target_compile_options(print_ip PRIVATE
         -Wall -Wextra -pedantic -Werror
     )
 endif()
 
-install(TARGETS doxy RUNTIME DESTINATION bin)
+install(TARGETS print_ip RUNTIME DESTINATION bin)
 
 set(CPACK_GENERATOR DEB)
 
@@ -93,10 +93,10 @@ include(CPack)
 enable_testing()
 
 add_test(test_boost test_boost)
-add_test(GOOGLE_TEST2 doxy)
-add_test(GOOGLE_TEST3 doxy)
-add_test(GOOGLE_TEST4 doxy)
-add_test(GOOGLE_TEST5 doxy)
-add_test(GOOGLE_TEST6 doxy)
-add_test(GOOGLE_TEST7 doxy)
-add_test(GOOGLE_TEST8 doxy)
+add_test(GOOGLE_TEST2 print_ip)
+add_test(GOOGLE_TEST3 print_ip)
+add_test(GOOGLE_TEST4 print_ip)
+add_test(GOOGLE_TEST5 print_ip)
+add_test(GOOGLE_TEST6 print_ip)
+add_test(GOOGLE_TEST7 print_ip)
+add_test(GOOGLE_TEST8 print_ip)
