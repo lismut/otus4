@@ -18,10 +18,10 @@ add_subdirectory(
 
 add_executable(print_ip main.cpp)
 add_library(print_ip.lib STATIC lib.cpp)
-add_executable(test_boost testboost.cpp)
+#add_executable(test_boost testboost.cpp)
 add_executable(test_google testg.cpp)
 
-set_target_properties(print_ip  print_ip.lib test_boost test_google PROPERTIES
+set_target_properties(print_ip  print_ip.lib test_google PROPERTIES #test_boost
     CXX_STANDARD 17
     CXX_STANDARD_REQUIRED ON
 )
@@ -29,19 +29,18 @@ set_target_properties(print_ip  print_ip.lib test_boost test_google PROPERTIES
 target_include_directories(print_ip.lib
     PUBLIC "${CMAKE_BINARY_DIR}"
 )
-set_target_properties(test_boost PROPERTIES
-    COMPILE_DEFINITIONS BOOST_TEST_DYN_LINK
-    INCLUDE_DIRECTORIES ${Boost_INCLUDE_DIR}
-)
+#set_target_properties(test_boost PROPERTIES
+#    COMPILE_DEFINITIONS BOOST_TEST_DYN_LINK
+#    INCLUDE_DIRECTORIES ${Boost_INCLUDE_DIR}
+#)
 
 target_link_libraries(print_ip
     print_ip.lib
 )
 
-target_link_libraries(test_boost
-    ${Boost_LIBRARIES}
-    print_ip.lib
-)
+#target_link_libraries(test_boost
+#    ${Boost_LIBRARIES}
+#)
 
 target_link_libraries(test_google
     gtest
@@ -55,9 +54,9 @@ if (MSVC)
     target_compile_options(print_ip.lib PRIVATE
         /W4
     )
-    target_compile_options(test_boost PRIVATE
-        /W4
-    )
+    #target_compile_options(test_boost PRIVATE
+    #    /W4
+    #)
     target_compile_options(test_google PRIVATE
         /W4
     )
@@ -68,13 +67,10 @@ else ()
     target_compile_options(print_ip.lib PRIVATE
         -Wall -Wextra -pedantic -Werror
     )
-    target_compile_options(test_boost PRIVATE
-        -Wall -Wextra -pedantic -Werror
-    )
+    #target_compile_options(test_boost PRIVATE
+    #    -Wall -Wextra -pedantic -Werror
+    #)
     target_compile_options(test_google PRIVATE
-        -Wall -Wextra -pedantic -Werror
-    )
-    target_compile_options(print_ip PRIVATE
         -Wall -Wextra -pedantic -Werror
     )
 endif()
@@ -92,7 +88,7 @@ set(CPACK_PACKAGE_CONTACT lismut@gmail.com)
 include(CPack)
 enable_testing()
 
-add_test(test_boost test_boost)
+#add_test(test_valid_version print_ip)
 add_test(GOOGLE_TEST2 print_ip)
 add_test(GOOGLE_TEST3 print_ip)
 add_test(GOOGLE_TEST4 print_ip)

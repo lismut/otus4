@@ -15,6 +15,7 @@ void print_ip(T ip)
 /// \brief Some examples
 int main()
 {
+    //std::cout << "Print IP version " << version() << std::endl;
     print_ip(char{-1});
     print_ip(short{0});
     print_ip(int{2130706433});
